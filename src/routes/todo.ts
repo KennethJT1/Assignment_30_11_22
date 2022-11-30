@@ -5,9 +5,9 @@ const router = express.Router();
 
 router.post('/register', registerTodo);
 router.get('/getall', getAllTodo);
-router.get('/getsingle', getSingleTodo);
-router.put('/update', updateTodo);
-router.delete('/delete', deleteTodo);
+router.get('/getsingle/:_id', getSingleTodo);
+router.put('/update/:_id', updateTodo);
+router.delete('/delete/:_id', deleteTodo);
 
 
 
