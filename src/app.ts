@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import logger from "morgan";
 import mongoose from 'mongoose';
 import dotenv from "dotenv";
-import userRouter from "./routes/user";
+import todoRouter from "./routes/todo";
  
 
 
@@ -22,7 +22,7 @@ app.use(logger("dev"));
 
 
 //Router middleware
-app.use("/users", userRouter);
+app.use("/todo", todoRouter);
 
 const port = process.env.PORT || 4040;
 app.listen(port, () => {
