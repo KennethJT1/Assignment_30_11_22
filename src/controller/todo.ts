@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import Todo from "../models/todo";
-import { registerSchema, option } from '../utils/utils'
+import { registerSchema, option, updateSchema } from '../utils/utils'
 
 //Register todo
 export const registerTodo = async (req: Request, res: Response) => {
@@ -69,6 +69,13 @@ export const getSingleTodo = async (req: Request, res: Response) => {
 //Update a todo
 export const updateTodo = async (req: Request, res: Response) => {
   try {
+    const validateResult = updateSchema.validate(req.body, option);
+    if (validateResult.error) {
+      return res.status(400).json({
+        Error: validateResult.error.details[0].message,
+      });
+    }
+
     const { _id } = req.params;
     const todo = await Todo.findByIdAndUpdate({_id});
     if(!todo) {
